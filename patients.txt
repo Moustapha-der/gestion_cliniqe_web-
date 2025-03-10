@@ -1,0 +1,44 @@
+{
+    "P-0001": {
+        "nom": "DER",
+        "prenom": "Moustapha",
+        "contact": "782409787",
+        "medecin_affecte": "M-001"
+    },
+    "P-0002": {
+        "nom": "Diallo",
+        "prenom": "Ibrahima",
+        "contact": "775645139",
+        "medecin_affecte": "M-001"
+    },
+    "P-0003": {
+        "nom": "youba",
+        "prenom": "Bagayoko",
+        "contact": "0678954321",
+        "medecin_affecte": "M-001"
+    },
+    "P-004": {
+        "nom": "Thiaw",
+        "prenom": "seynabou",
+        "contact": "76282578",
+        "medecin_affecte": "M-001"
+    },
+    "P-005": {
+        "nom": "mame ",
+        "prenom": "saly",
+        "contact": "70278865",
+        "medecin_affecte": "M-001"
+    },
+    "P-006": {
+        "nom": "mame g",
+        "prenom": "Thian\u00e9",
+        "contact": "702788652",
+        "medecin_affecte": "M-001"
+    },
+    "P-007": {
+        "nom": "Ba",
+        "prenom": "Boubacar",
+        "contact": "78960962",
+        "medecin_affecte": "M-001"
+    }
+}

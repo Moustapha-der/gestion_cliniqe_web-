@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}Espace Médecin{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">👨‍⚕️ Bienvenue Dr. {{ user.matricule }}</h2>
+            <p class="text-center text-muted">Voici la liste de vos patients</p>
+
+            {% if patients %}
+                <table class="table table-hover shadow-sm rounded">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Matricule</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in patients %}
+                        <tr>
+                            <td><i class="fas fa-id-badge"></i> {{ patient.matricule }}</td>
+                            <td><i class="fas fa-user"></i> {{ patient.nom }}</td>
+                            <td>{{ patient.prenom }}</td>
+                            <td><i class="fas fa-phone"></i> {{ patient.contact }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-warning text-center">Aucun patient trouvé.</div>
+            {% endif %}
+            
+            <div class="modal fade" id="ajoutPatientModal" tabindex="-1" aria-labelledby="ajoutPatientModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="ajoutPatientModalLabel">Ajouter un patient</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="ajoutPatientForm">
+                        <div class="mb-3">
+                          <label for="nom" class="form-label">Nom</label>
+                          <input type="text" class="form-control" id="nom" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="prenom" class="form-label">Prénom</label>
+                          <input type="text" class="form-control" id="prenom" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="contact" class="form-label">Contact</label>
+                          <input type="text" class="form-control" id="contact" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="matricule" class="form-label">matricule</label>
+                            <input type="text" class="form-control" id="matricule" required>
+                          </div>
+                        <button type="submit" class="btn btn-success">Ajouter</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 class="mt-4 text-success"><i class="fas fa-calendar-check"></i>📅 Planning du Jour</h3>
+
+              {% if rdvs_du_jour %}
+                  <table id="tableRdvJour" class="table table-bordered shadow-sm rounded">
+                      <thead class="table-success">
+                          <tr>
+                              <th>ID</th>
+                              <th>Heure</th>
+                              <th>Patient</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for rdv in rdvs_du_jour %}
+                          <tr>
+                              <td><i class="fas fa-id-badge"></i> {{ rdv.id }}</td>
+                              <td><i class="far fa-clock"></i> {{ rdv.heure }}</td>
+                              <td><i class="fas fa-user"></i> {{ rdv.patient }}</td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              {% else %}
+                  <div class="alert alert-info text-center">Aucun rendez-vous prévu aujourd’hui.</div>
+              {% endif %}
+              
+    <h3>📅 Rendez-vous du jour</h3>
+    {% if rdvs_du_jour %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Heure</th>
+                    <th>Patient</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rdv in rdvs_du_jour %}
+                <tr>
+                    <td><i class="far fa-clock"></i> {{ rdv.heure }}</td>
+                    <td><i class="fas fa-user"></i> {{ rdv.patient }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">Aucun rendez-vous aujourd’hui.</div>
+    {% endif %}
+    
+</table>
+
+
+        </div>
+    </div>
+</div>
+
+<h3 class="mt-4 text-primary"><i class="fas fa-calendar-alt"></i>📅 Rendez-vous du Médecin</h3>
+
+{% if rdvs_medecin %}
+    <table id="tableRdv" class="table table-hover shadow-sm rounded">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Patient</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rdv in rdvs_medecin %}
+            <tr>
+                <td><i class="fas fa-id-card"></i> {{ rdv.id }}</td>
+                <td><i class="fas fa-calendar-day"></i> {{ rdv.date }}</td>
+                <td><i class="far fa-clock"></i> {{ rdv.heure }}</td>
+                <td><i class="fas fa-user"></i> {{ rdv.patient }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-warning text-center">Aucun rendez-vous trouvé.</div>
+{% endif %}
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+<!-- jQuery et DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<!-- Script pour activer DataTables -->
+<script>
+$(document).ready(function() {
+    $('#tableRdv').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/French.json"
+        },
+        "order": [[1, "asc"]], // Tri par date croissante
+        "pageLength": 5 // Nombre de lignes par page
+    });
+});
+</script>
+
+
+{% endblock %}
+

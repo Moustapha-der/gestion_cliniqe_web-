@@ -1,0 +1,17 @@
+{
+    "M-001": {
+        "nom": "der",
+        "prenom": "moustapha",
+        "role": "medecin",
+        "email": "moustapha27@gmail.com",
+        "mot_de_passe": "1234"
+    },
+    "S-001": {
+        "nom": "diallo",
+        "prenom": "ibrahima",
+        "role": "secretaire",
+        "email": "diallo27@gmail.com",
+        "mot_de_passe": "abcd"
+    }
+    
+}

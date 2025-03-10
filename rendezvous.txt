@@ -1,0 +1,32 @@
+{
+    "RDV-001": {
+        "date": "2024-03-10",
+        "heure": "10:30",
+        "patient": "P-0001",
+        "medecin_id": "M-001"
+    },
+    "RDV-002": {
+        "date": "2024-03-11",
+        "heure": "14:00",
+        "patient": "P-0002",
+        "medecin_id": "M-002"
+    },
+    "RDV-003": {
+        "date": "2025-03-05",
+        "heure": "01:27",
+        "patient": "P-004",
+        "medecin_id": "M-001"
+    },
+    "RDV-004": {
+        "date": "2025-03-04",
+        "heure": "20:10",
+        "patient": "P-0002",
+        "medecin_id": "M-001"
+    },
+    "RDV-005": {
+        "date": "2025-03-06",
+        "heure": "16:51",
+        "patient": "P-0002",
+        "medecin_id": "M-001"
+    }
+}
